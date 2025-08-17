@@ -1,4 +1,6 @@
-﻿namespace MauiAppMinhasCompras
+﻿using MauiAppMinhasCompras.Views;
+
+namespace MauiAppMinhasCompras
 {
     public partial class App : Application
     {
@@ -9,7 +11,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            // Ensure a Window object is always returned to fix CS0161
+            return new Window(new NavigationPage(new Views.ListaProduto()));
         }
     }
-}
+}   
