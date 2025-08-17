@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MauiAppMinhasCompras.Models;
 using SQLite;
-using MauiAppMinhasCompras.Models;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace MauiAppMinhasCompras.Helpers
@@ -30,8 +24,7 @@ namespace MauiAppMinhasCompras.Helpers
             string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?";
             return _conn.QueryAsync<Produto>(sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
 
-        }
-        
+        }       
                         
             public Task<int> Delete(int id) 
         {
