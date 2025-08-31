@@ -15,4 +15,19 @@ public class SQLiteDatabaseHelper
     {
         return _connection.InsertAsync(item);
     }
+
+    internal async Task<List<Produto>> GetAllAsync()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal async Task InsertAsync(Produto p)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal async Task<List<Produto>> SearchAsync(string q)
+    {
+        throw new NotImplementedException();
+    }
 }

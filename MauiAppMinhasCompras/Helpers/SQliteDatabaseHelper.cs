@@ -1,29 +1,30 @@
 ﻿using MauiAppMinhasCompras.Models;
 using SQLite;
 
-
 namespace MauiAppMinhasCompras.Helpers
 {
-    public class SQliteDatabaseHelper
+    public class SQLiteDatabaseHelper
     {
-        private readonly SQLiteAsyncConnection _conn; // Fix for CS0103: Declare the _conn field
+        readonly SQLiteAsyncConnection _conn;
 
-        public SQliteDatabaseHelper(string path)
+        public SQLiteDatabaseHelper(string path)
         {
-            _conn = new SQLiteAsyncConnection(path); // Fix for CS1729: Correct the class name to SQLiteAsyncConnection
+            _conn = new SQLiteAsyncConnection(path);
             _conn.CreateTableAsync<Produto>().Wait();
         }
+
         public Task<int> Insert(Produto p)
         {
             return _conn.InsertAsync(p);
         }
 
         public Task<List<Produto>> Update(Produto p)
-
         {
             string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?";
-            return _conn.QueryAsync<Produto>(sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
 
+            return _conn.QueryAsync<Produto>(
+                sql, p.Descricao, p.Quantidade, p.Preco, p.Id
+            );
         }
 
         public Task<int> Delete(int id)
@@ -38,27 +39,13 @@ namespace MauiAppMinhasCompras.Helpers
 
         public Task<List<Produto>> Search(string q)
         {
-            string sql = "SELECT * Produto WHERE descricao LIKE '%" + q + "%'";
+            string sql = "SELECT * FROM Produto WHERE descricao LIKE '%" + q + "%'";
+
             return _conn.QueryAsync<Produto>(sql);
-            ;
-        }
-
-
-
-    }
-
-    public class SQLiteDatabaseHelper
-    {
-        private string path;
-
-        public SQLiteDatabaseHelper(string databasePath)
-        {
-            path = databasePath;
         }
     }
 }
-   
-    
 
-    
+
+
 

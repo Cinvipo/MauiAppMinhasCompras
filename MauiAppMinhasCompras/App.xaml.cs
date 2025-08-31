@@ -6,7 +6,7 @@ namespace MauiAppMinhasCompras
     {
         static SQLiteDatabaseHelper _db;
 
-        public static SQLiteDatabaseHelper Db 
+        public static SQLiteDatabaseHelper Db
         {
             get
             {
